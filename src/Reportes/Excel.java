@@ -74,7 +74,7 @@ public class Excel {
             if (menuPrincipal.getCBCliente().isSelected()) {
                 generarReporteClientes(conn);
             }
-            // NOmbre del Libro/Documento
+            // Nombre del Libro/Documento
             String fileName = "Reporte";
             // Formato y Ruta donde se guardara el reporte
             String home = System.getProperty("user.home");

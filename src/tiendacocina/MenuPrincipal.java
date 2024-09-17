@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JList;
@@ -64,7 +65,7 @@ public final class MenuPrincipal extends javax.swing.JFrame {
         // ocultar el calendario
         jCalendar1.setVisible(false);
         jCalendar2.setVisible(false);
-
+        
         // colocamos el modelo de tabla de [TablaModeloVentas] a la tabla [TablaListaProductos
         tablaListaProductos.setModel(modelo);
         menu.setUI(new BasicTabbedPaneUI() {
@@ -74,7 +75,16 @@ public final class MenuPrincipal extends javax.swing.JFrame {
             }
         });
     }
-
+    //metodo para mostrar la pantalla administrador una vez iniciado sesion
+    public void mostrarPanel(int index) {
+        menu.setSelectedIndex(index);
+    }
+    
+    public JButton obtenerBoton(int index) {
+        return (JButton) jToolBar1.getComponentAtIndex(index);
+    }
+    
+    
 // Metodos get para obtener la seleccion de los jCheckBox
     public JCheckBox getCBVentas() {
         return CBVentas;
@@ -184,7 +194,7 @@ public final class MenuPrincipal extends javax.swing.JFrame {
     }
 
     private void mostrarTablaUsuarios() {
-        mostrar("SELECT * FROM usuarios", new String[]{"id", "nombres", "permiso"}, tablaAdministrador, new Class[]{String.class, String.class, String.class});
+        mostrar("SELECT id,nombres, permiso FROM usuarios", new String[]{"id", "nombres", "Rol"}, tablaAdministrador, new Class[]{String.class, String.class, String.class});
     }
 
     private void mostrarTablaDetalleProductos() {
@@ -618,7 +628,7 @@ public final class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnEliminarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/004-boton-x.png"))); // NOI18N
+        btnEliminarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/003-basura.png"))); // NOI18N
         btnEliminarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarClienteActionPerformed(evt);
@@ -1732,6 +1742,11 @@ public final class MenuPrincipal extends javax.swing.JFrame {
         });
 
         btnEliminarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/002-eliminar.png"))); // NOI18N
+        btnEliminarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarUsuarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelUsuarioLayout = new javax.swing.GroupLayout(panelUsuario);
         panelUsuario.setLayout(panelUsuarioLayout);
@@ -2005,16 +2020,16 @@ public final class MenuPrincipal extends javax.swing.JFrame {
         menuSoporteLayout.setHorizontalGroup(
             menuSoporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuSoporteLayout.createSequentialGroup()
-                .addGap(226, 226, 226)
+                .addGap(534, 534, 534)
                 .addComponent(jButton8)
-                .addContainerGap(1492, Short.MAX_VALUE))
+                .addContainerGap(1184, Short.MAX_VALUE))
         );
         menuSoporteLayout.setVerticalGroup(
             menuSoporteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuSoporteLayout.createSequentialGroup()
-                .addGap(356, 356, 356)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuSoporteLayout.createSequentialGroup()
+                .addContainerGap(790, Short.MAX_VALUE)
                 .addComponent(jButton8)
-                .addContainerGap(511, Short.MAX_VALUE))
+                .addGap(77, 77, 77))
         );
 
         menu.addTab("soporte tecnico", menuSoporte);
@@ -2197,7 +2212,7 @@ public final class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiarCamposVentaActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        dispose();
+        System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void jCalendar1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jCalendar1PropertyChange
@@ -3039,6 +3054,10 @@ public final class MenuPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "CONECTADO");
         }
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void btnEliminarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarUsuarioActionPerformed
 
 // Metodo para mostrar el total de la compra
     public void mostrarTotal() {
